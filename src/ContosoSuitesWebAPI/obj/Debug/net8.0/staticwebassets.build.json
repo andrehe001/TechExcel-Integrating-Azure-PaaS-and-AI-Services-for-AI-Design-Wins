@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "NI66fjpqg1TWjIYlw+sqbuMRQ5RjgrUw0TYNM8Xuj7U=",
+  "Source": "ContosoSuitesWebAPI",
+  "BasePath": "_content/ContosoSuitesWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

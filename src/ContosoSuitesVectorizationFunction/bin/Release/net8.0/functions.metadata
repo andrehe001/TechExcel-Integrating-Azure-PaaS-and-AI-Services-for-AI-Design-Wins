@@ -1,0 +1,33 @@
+[
+  {
+    "name": "VectorizeMaintenanceRequests",
+    "scriptFile": "ContosoSuitesVectorizationFunction.dll",
+    "entryPoint": "ContosoSuites.Functions.CosmosChangeFeedVectorization.Run",
+    "language": "dotnet-isolated",
+    "properties": {
+      "IsCodeless": false
+    },
+    "bindings": [
+      {
+        "name": "input",
+        "direction": "In",
+        "type": "cosmosDBTrigger",
+        "databaseName": "ContosoSuites",
+        "containerName": "MaintenanceRequests",
+        "connection": "CosmosDBConnection",
+        "leaseContainerName": "leases",
+        "createLeaseContainerIfNotExists": true,
+        "properties": {}
+      },
+      {
+        "name": "$return",
+        "direction": "Out",
+        "type": "cosmosDB",
+        "databaseName": "ContosoSuites",
+        "containerName": "MaintenanceRequests",
+        "connection": "CosmosDBConnection",
+        "properties": {}
+      }
+    ]
+  }
+]

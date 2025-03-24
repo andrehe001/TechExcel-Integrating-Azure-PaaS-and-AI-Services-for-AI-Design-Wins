@@ -1,0 +1,91 @@
+{
+  "format": 1,
+  "restore": {
+    "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesVectorizationFunction/obj/Release/net8.0/WorkerExtensions/WorkerExtensions.csproj": {}
+  },
+  "projects": {
+    "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesVectorizationFunction/obj/Release/net8.0/WorkerExtensions/WorkerExtensions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesVectorizationFunction/obj/Release/net8.0/WorkerExtensions/WorkerExtensions.csproj",
+        "projectName": "Microsoft.Azure.Functions.Worker.Extensions",
+        "projectPath": "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesVectorizationFunction/obj/Release/net8.0/WorkerExtensions/WorkerExtensions.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesVectorizationFunction/obj/Release/net8.0/WorkerExtensions/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Azure.WebJobs.Extensions.CosmosDB": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
+            "Microsoft.NET.Sdk.Functions": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Microsoft.NETCore.Targets": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
