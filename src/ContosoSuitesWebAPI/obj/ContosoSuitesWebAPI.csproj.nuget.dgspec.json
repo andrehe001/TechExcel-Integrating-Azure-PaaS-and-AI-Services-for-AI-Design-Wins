@@ -63,10 +63,6 @@
               "target": "Package",
               "version": "[5.2.2, )"
             },
-            "Microsoft.SemanticKernel": {
-              "target": "Package",
-              "version": "[1.20.0, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.7.3, )"
