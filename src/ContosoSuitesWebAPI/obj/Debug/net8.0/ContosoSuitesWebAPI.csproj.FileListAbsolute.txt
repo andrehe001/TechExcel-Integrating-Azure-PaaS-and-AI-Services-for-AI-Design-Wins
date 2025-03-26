@@ -86,3 +86,10 @@
 /workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/obj/Debug/net8.0/ContosoSuitesWebAPI.pdb
 /workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/obj/Debug/net8.0/ContosoSuitesWebAPI.genruntimeconfig.cache
 /workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/obj/Debug/net8.0/ref/ContosoSuitesWebAPI.dll
+/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/bin/Debug/net8.0/Microsoft.SemanticKernel.dll
+/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/bin/Debug/net8.0/Microsoft.SemanticKernel.Abstractions.dll
+/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/bin/Debug/net8.0/Microsoft.SemanticKernel.Connectors.AzureOpenAI.dll
+/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/bin/Debug/net8.0/Microsoft.SemanticKernel.Connectors.OpenAI.dll
+/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/bin/Debug/net8.0/Microsoft.SemanticKernel.Core.dll
