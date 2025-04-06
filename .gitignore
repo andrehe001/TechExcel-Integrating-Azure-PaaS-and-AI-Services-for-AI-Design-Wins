@@ -1,4 +1,4 @@
 # ignore toml files
 secrets.toml.azure
-secrets.toml.local
+secretstoml.local
 .fake
