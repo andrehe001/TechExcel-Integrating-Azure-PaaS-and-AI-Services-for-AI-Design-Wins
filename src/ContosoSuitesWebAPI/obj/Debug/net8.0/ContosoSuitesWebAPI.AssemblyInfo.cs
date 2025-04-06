@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContosoSuitesWebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4624ae16c2156ec699cd532935ca42ec915a951e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7502779c627327f95ec17858275fe9f8192b430d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContosoSuitesWebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContosoSuitesWebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,3 @@
+# ignore toml files
+secrets.toml.azure
+secrets.toml.local
