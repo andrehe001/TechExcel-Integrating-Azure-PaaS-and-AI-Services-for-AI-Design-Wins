@@ -5937,32 +5937,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andrehe\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/home/codespace/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Trainwork\\TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins\\src\\ContosoSuitesWebAPI\\ContosoSuitesWebAPI.csproj",
+      "projectUniqueName": "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/ContosoSuitesWebAPI.csproj",
       "projectName": "ContosoSuitesWebAPI",
-      "projectPath": "C:\\Trainwork\\TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins\\src\\ContosoSuitesWebAPI\\ContosoSuitesWebAPI.csproj",
-      "packagesPath": "C:\\Users\\andrehe\\.nuget\\packages\\",
-      "outputPath": "C:\\Trainwork\\TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins\\src\\ContosoSuitesWebAPI\\obj\\",
+      "projectPath": "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/ContosoSuitesWebAPI.csproj",
+      "packagesPath": "/home/codespace/.nuget/packages/",
+      "outputPath": "/workspaces/TechExcel-Integrating-Azure-PaaS-and-AI-Services-for-AI-Design-Wins/src/ContosoSuitesWebAPI/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\andrehe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/codespace/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5980,8 +5972,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.200"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -6035,7 +6026,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
