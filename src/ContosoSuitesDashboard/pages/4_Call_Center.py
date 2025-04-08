@@ -10,10 +10,20 @@ from azure.core.credentials import AzureKeyCredential
 from azure.ai.textanalytics import ExtractiveSummaryAction, AbstractiveSummaryAction
 from azure.cosmos import CosmosClient
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from azure.keyvault.secrets import SecretClient
 import openai
 
 
 st.set_page_config(layout="wide")
+
+key_vault_name = "kv-5amfwtmscpp4a"
+key_vault_uri = f"https://kv-5amfwtmscpp4a.vault.azure.net/"
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_uri, credential=credential)
+
+def get_secret(secret_name):
+    """Fetch a secret from Azure Key Vault."""
+    return secret_client.get_secret(secret_name).value
 
 @st.cache_data
 def create_transcription_request(audio_file, speech_recognition_language="en-US"):
@@ -23,8 +33,10 @@ def create_transcription_request(audio_file, speech_recognition_language="en-US"
     - The audio file has a sample rate of 16 kHz.
     - Speech key and region are stored in Streamlit secrets."""
 
-    speech_key = st.secrets["speech"]["key"]
-    speech_region = st.secrets["speech"]["region"]
+    # speech_key = st.secrets["speech"]["key"]
+    # speech_region = st.secrets["speech"]["region"]
+    speech_key = get_secret("speech-key")
+    speech_region = get_secret("speech-region")
 
     # Create an instance of a speech config with specified subscription key and service region.
     speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=speech_region)
@@ -82,8 +94,10 @@ def make_azure_openai_chat_request(system, call_contents):
         DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
     )
     
-    aoai_endpoint = st.secrets["aoai"]["endpoint"]
-    aoai_deployment_name = st.secrets["aoai"]["deployment_name"]
+    # aoai_endpoint = get_secret("aoai-endpoint")
+    # aoai_deployment_name = get_secret("aoai-deployment-name")
+    aoai_endpoint = get_secret("aoai-endpoint")
+    aoai_deployment_name = get_secret("aoai-deployment-name")
 
     client = openai.AzureOpenAI(
         azure_ad_token_provider=token_provider,
@@ -137,8 +151,10 @@ def generate_extractive_summary(call_contents):
     """Generate an extractive summary of a call transcript. Key assumptions:
     - Azure AI Services Language service endpoint and key stored in Streamlit secrets."""
 
-    language_endpoint = st.secrets["language"]["endpoint"]
-    language_key = st.secrets["language"]["key"]
+    # language_endpoint = st.secrets["language"]["endpoint"]
+    # language_key = st.secrets["language"]["key"]
+    language_endpoint = get_secret("language-endpoint")
+    language_key = get_secret("language-key")
 
     # The call_contents parameter is formatted as a list of strings.
     # Join them together with spaces to pass in as a single document.
@@ -151,8 +167,10 @@ def generate_abstractive_summary(call_contents):
     """Generate an abstractive summary of a call transcript. Key assumptions:
     - Azure AI Services Language service endpoint and key stored in Streamlit secrets."""
 
-    language_endpoint = st.secrets["language"]["endpoint"]
-    language_key = st.secrets["language"]["key"]
+    # language_endpoint = st.secrets["language"]["endpoint"]
+    # language_key = st.secrets["language"]["key"]
+    language_endpoint = get_secret("language-endpoint")
+    language_key = get_secret("language-key")
 
     # The call_contents parameter is formatted as a list of strings.
     # Join them together with spaces to pass in as a single document.
@@ -175,8 +193,10 @@ def create_sentiment_analysis_and_opinion_mining_request(call_contents):
     """Analyze the sentiment of a call transcript and mine opinions. Key assumptions:
     - Azure AI Services Language service endpoint and key stored in Streamlit secrets."""
 
-    language_endpoint = st.secrets["language"]["endpoint"]
-    language_key = st.secrets["language"]["key"]
+    # language_endpoint = st.secrets["language"]["endpoint"]
+    # language_key = st.secrets["language"]["key"]
+    language_endpoint = get_secret("language-endpoint")
+    language_key = get_secret("language-key")
 
     # The call_contents parameter is formatted as a list of strings.
     # Join them together with spaces to pass in as a single document.
@@ -220,11 +240,14 @@ def save_transcript_to_cosmos_db(transcript_item):
         call_transcript (string), and request_vector (list).
     - Cosmos DB endpoint, client_id, and database name stored in Streamlit secrets."""
 
-    cosmos_client_id = st.secrets["cosmos"]["client_id"]
+    # cosmos_client_id = st.secrets["cosmos"]["client_id"]
+    cosmos_client_id = get_secret("cosmos-client-id")
     cosmos_credentials = DefaultAzureCredential(managed_identity_client_id=cosmos_client_id)
 
-    cosmos_endpoint = st.secrets["cosmos"]["endpoint"]
-    cosmos_database_name = st.secrets["cosmos"]["database_name"]
+    # cosmos_endpoint = st.secrets["cosmos"]["endpoint"]
+    # cosmos_database_name = st.secrets["cosmos"]["database_name"]
+    cosmos_endpoint = get_secret("cosmos-endpoint")
+    cosmos_database_name = get_secret("cosmos-database-name")
     cosmos_container_name = "CallTranscripts"
 
     # Create a CosmosClient

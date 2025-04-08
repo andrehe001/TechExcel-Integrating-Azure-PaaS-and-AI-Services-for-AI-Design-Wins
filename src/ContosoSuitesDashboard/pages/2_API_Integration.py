@@ -1,26 +1,40 @@
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 import requests
 import streamlit as st
 
 st.set_page_config(layout="wide")
 
+key_vault_name = "kv-5amfwtmscpp4a"
+key_vault_uri = f"https://kv-5amfwtmscpp4a.vault.azure.net/"
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_uri, credential=credential)
+
+def get_secret(secret_name):
+    """Fetch a secret from Azure Key Vault."""
+    return secret_client.get_secret(secret_name).value
+
 @st.cache_data
 def get_hotels():
     """Return a list of hotels from the API."""
-    api_endpoint = st.secrets["api"]["endpoint"]
+    # api_endpoint = st.secrets["api"]["endpoint"]
+    api_endpoint = get_secret("api-endpoint")
     response = requests.get(f"{api_endpoint}/Hotels", timeout=10)
     return response
 
 @st.cache_data
 def get_hotel_bookings(hotel_id):
     """Return a list of bookings for the specified hotel."""
-    api_endpoint = st.secrets["api"]["endpoint"]
+    # api_endpoint = st.secrets["api"]["endpoint"]
+    api_endpoint = get_secret("api-endpoint")
     response = requests.get(f"{api_endpoint}/Hotels/{hotel_id}/Bookings", timeout=10)
     return response
 
 @st.cache_data
 def invoke_chat_endpoint(question):
     """Invoke the chat endpoint with the specified question."""
-    api_endpoint = st.secrets["api"]["endpoint"]
+    # api_endpoint = st.secrets["api"]["endpoint"]
+    api_endpoint = get_secret("api-endpoint")
     response = requests.post(f"{api_endpoint}/Chat", data={"message": question}, timeout=10)
     return response
 

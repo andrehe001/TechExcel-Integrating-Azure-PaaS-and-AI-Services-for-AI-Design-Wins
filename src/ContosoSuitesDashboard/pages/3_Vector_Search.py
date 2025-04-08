@@ -1,17 +1,31 @@
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 import requests
 import streamlit as st
 
 st.set_page_config(layout="wide")
 
+key_vault_name = "kv-5amfwtmscpp4a"
+key_vault_uri = f"https://kv-5amfwtmscpp4a.vault.azure.net/"
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_uri, credential=credential)
+
+def get_secret(secret_name):
+    """Fetch a secret from Azure Key Vault."""
+    return secret_client.get_secret(secret_name).value
+
 def handle_query_vectorization(query):
     """Vectorize the query using the Vectorize endpoint."""
-    api_endpoint = st.secrets["api"]["endpoint"]
+    # api_endpoint = st.secrets["api"]["endpoint"]
+    # api_endpoint = get_secret("api-endpoint")
+    api_endpoint = get_secret("api-endpoint")
     response = requests.get(f"{api_endpoint}/Vectorize", params={"text": query}, timeout=10, verify=False)
     return response.text
 
 def handle_vector_search(query_vector, max_results=5, minimum_similarity_score=0.8):
     """Perform a vector search using the VectorSearch endpoint."""
-    api_endpoint = st.secrets["api"]["endpoint"]
+    # api_endpoint = st.secrets["api"]["endpoint"]
+    api_endpoint = get_secret("api-endpoint")
     headers = {"Content-Type": "application/json"}
     response = requests.post(f"{api_endpoint}/VectorSearch", data=query_vector, params={"max_results": max_results, "minimum_similarity_score": minimum_similarity_score}, headers=headers, timeout=10, verify=False)
     return response

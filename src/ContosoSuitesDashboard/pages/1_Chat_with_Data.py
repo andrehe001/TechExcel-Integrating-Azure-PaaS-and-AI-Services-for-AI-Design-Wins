@@ -1,58 +1,62 @@
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 import streamlit as st
 import openai
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 st.set_page_config(layout="wide")
 
+key_vault_name = "kv-5amfwtmscpp4a"
+key_vault_uri = f"https://kv-5amfwtmscpp4a.vault.azure.net/"
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_uri, credential=credential)
+
+def get_secret(secret_name):
+    """Fetch a secret from Azure Key Vault."""
+    return secret_client.get_secret(secret_name).value
+
+def token_provider():
+    """Provide a token for Azure OpenAI."""
+    return credential.get_token("https://cognitiveservices.azure.com/.default").token
+
 def create_chat_completion(messages):
-    """Create and return a new chat completion request. Key assumptions:
-    - The Azure OpenAI endpoint and deployment name are stored in Streamlit secrets."""
-
-    # Retrieve secrets from the Streamlit secret store.
-    # This is a secure way to store sensitive information that you don't want to expose in your code.
-    # Learn more about Streamlit secrets here: https://docs.streamlit.io/develop/concepts/connections/secrets-management
-    # The secrets themselves are stored in the .streamlit/secrets.toml file.
-
-    token_provider = get_bearer_token_provider(
-        DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-    )
-    
-    aoai_endpoint = st.secrets["aoai"]["endpoint"]
-    aoai_deployment_name = st.secrets["aoai"]["deployment_name"]
-    search_endpoint = st.secrets["search"]["endpoint"]
-    search_key = st.secrets["search"]["key"]
-    search_index_name = st.secrets["search"]["index_name"]
+    """Create and return a new chat completion request using secrets from Azure Key Vault."""
+    aoai_endpoint = get_secret("aoai-endpoint")
+    deployment_name = get_secret("aoai-deployment-name")
+    search_endpoint = get_secret("search-endpoint")
+    search_key = get_secret("search-key")
+    search_index_name = get_secret("search-index-name")
 
     client = openai.AzureOpenAI(
-        azure_ad_token_provider=token_provider,
+        azure_ad_token_provider=token_provider,  # Pass the callable function
         api_version="2024-06-01",
-        azure_endpoint = aoai_endpoint
+        azure_endpoint=aoai_endpoint
     )
+
     # Create and return a new chat completion request
     return client.chat.completions.create(
-          model=aoai_deployment_name,
-          messages=[
-              {"role": m["role"], "content": m["content"]}
-              for m in messages
-          ],
-          stream=True,
-          extra_body={
-              "data_sources": [
-                  {
-                      "type": "azure_search",
-                      "parameters": {
-                          "endpoint": search_endpoint,
-                          "index_name": search_index_name,
-                          "authentication": {
-                              "type": "api_key",
-                              "key": search_key
+        model=deployment_name,
+        messages=[
+            {"role": m["role"], "content": m["content"]}
+            for m in messages
+        ],
+        stream=True,
+        extra_body={
+            "data_sources": [
+                {
+                    "type": "azure_search",
+                    "parameters": {
+                        "endpoint": search_endpoint,
+                        "index_name": search_index_name,
+                        "authentication": {
+                            "type": "api_key",
+                            "key": search_key
                         }
                     }
                 }
             ]
         }
     )
-    
+
 def handle_chat_prompt(prompt):
     """Echo the user's prompt to the chat window.
     Then, send the user's prompt to Azure OpenAI and display the response."""

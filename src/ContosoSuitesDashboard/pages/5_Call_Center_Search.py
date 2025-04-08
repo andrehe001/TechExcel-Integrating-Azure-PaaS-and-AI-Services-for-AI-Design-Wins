@@ -1,8 +1,19 @@
 import streamlit as st
 from azure.cosmos import CosmosClient
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 import openai
 
 st.set_page_config(layout="wide")
+
+key_vault_name = "kv-5amfwtmscpp4a"
+key_vault_uri = f"https://kv-5amfwtmscpp4a.vault.azure.net/"
+credential = DefaultAzureCredential()
+secret_client = SecretClient(vault_url=key_vault_uri, credential=credential)
+
+def get_secret(secret_name):
+    """Fetch a secret from Azure Key Vault."""
+    return secret_client.get_secret(secret_name).value
 
 def make_azure_openai_embedding_request(text):
     """Create and return a new embedding request. Key assumptions:
@@ -15,11 +26,14 @@ def make_cosmos_db_vector_search_request(query_embedding, max_results=5, minimum
     - Query embedding is a list of floats based on a search string.
     - Cosmos DB endpoint, client_id, and database name stored in Streamlit secrets."""
 
-    cosmos_client_id = st.secrets["cosmos"]["client_id"]
+    # cosmos_client_id = st.secrets["cosmos"]["client_id"]
+    cosmos_client_id = get_secret("cosmos-client-id")
     cosmos_credentials = DefaultAzureCredential(managed_identity_client_id=cosmos_client_id)
 
-    cosmos_endpoint = st.secrets["cosmos"]["endpoint"]
-    cosmos_database_name = st.secrets["cosmos"]["database_name"]
+    # cosmos_endpoint = st.secrets["cosmos"]["endpoint"]
+    # cosmos_database_name = st.secrets["cosmos"]["database_name"]
+    cosmos_endpoint = get_secret("cosmos-endpoint")
+    cosmos_database_name = get_secret("cosmos-database-name")
     cosmos_container_name = "CallTranscripts"
 
     # Create a CosmosClient
